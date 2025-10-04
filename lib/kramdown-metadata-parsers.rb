@@ -13,7 +13,7 @@ module KramdownMetadataParsers
       if source =~ /\A---/
         preamble = source[/\A---.*?^---/m]
         source   = source[preamble.size..-1]
-        metadata = YAML.load(preamble)
+        metadata = YAML.load(preamble, permitted_classes: [Date])
       end
       super(source, options)
       @root = MetadataElement.new(@root)
